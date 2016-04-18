@@ -1,0 +1,8 @@
+<%= request['request_method'] %> <%= request['request_path'] %> HTTP/1.1
+<% request['request_headers'].each do |key, value| %>
+<%= key %>: <%= value %>
+<% end %>
+<% if request['request_body'] %>
+
+<%== formatted_body request['request_body'], 'json' %>
+<% end %>

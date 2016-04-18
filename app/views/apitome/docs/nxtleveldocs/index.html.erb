@@ -1,0 +1,68 @@
+<%= raw formatted_readme %>
+
+<% resources.each do |resource| %>
+  <h1 id="<%= resource['name']&.parameterize %>"><%= resource['name'] %></h1>
+
+  <% response_fields = set_example(resource['examples'].first['link'].gsub('.json', ''))['response_fields'] %>
+  <% if response_fields.any? %>
+    <h2 id="<%= "The #{resource['name'].singularize} Object".parameterize %>">
+      The <%= resource['name'].singularize %> Object
+    </h2>
+
+    <table class='attributes-table'>
+      <% response_fields.each do |attribute| %>
+        <tr>
+          <td class='key'>
+            <span class='key-name'><%= attribute['name'] %></span><br />
+            <span class='type'><%= attribute['type'] %></span>
+          </td>
+          <td class='value'>
+            <%== rendered_markdown attribute['description'] %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <% resource['examples'].each do |example| %>
+    <% link = example['link'].gsub('.json', '') %>
+    <% example = set_example(link) %>
+
+    <h2 id="<%= example['description']&.parameterize %>">
+      <%= example['description'] %>
+    </h2>
+
+    <% formatter = Rouge::Formatters::HTML.new(css_class: 'highlight') %>
+    <% lexer = Rouge::Lexers::HTTP.new %>
+    <% example['requests'].each do |request| %>
+      <% request_code = render('request', request: request) %>
+      <%== formatter.format(lexer.lex request_code) %>
+
+      <% response_code = render('response', request: request) %>
+      <%== formatter.format(lexer.lex response_code) %>
+    <% end %>
+
+    <%= raw rendered_markdown(example['explanation'].strip_heredoc) if example['explanation'] %>
+
+    <% if example['parameters'].any? %>
+      <h3> Arguments </h3>
+      <table class='attributes-table'>
+        <% example['parameters'].each do |parameter| %>
+          <tr>
+            <td class='key'>
+              <span class='key-name'><%= parameter['name'] %></span><br />
+              <% if parameter['required'] %>
+                <b class='required'> required </b>
+              <% else %>
+                optional
+              <% end %>
+            </td>
+            <td class='value'>
+              <%= parameter['description'] %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>
