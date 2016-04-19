@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title> NXT Level You API Documentation </title>
 
-    <%= stylesheet_link_tag :screen, media: :screen %>
-    <%= stylesheet_link_tag :print, media: :print %>
+    <%= stylesheet_link_tag 'nxtleveldocs/screen', media: :screen %>
+    <%= stylesheet_link_tag 'nxtleveldocs/print', media: :print %>
 
     <style>
       <%= Rouge::Themes::Base16.mode(:light).render(scope: '.highlight') %>
@@ -25,12 +25,12 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <%= image_tag('navbar.png') %>
+        <%= image_tag('nxtleveldocs/navbar.png') %>
       </span>
     </a>
 
     <div class="tocify-wrapper">
-      <%= render 'application/icon' %>
+      <%= image_tag 'icon.svg' %>
 
       <% if language_tabs %>
         <div class="lang-selector">
