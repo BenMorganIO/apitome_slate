@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   s.add_dependency 'rails', '>= 5.0.0.beta3', '< 5.1'
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'jquery-rails'
   s.add_dependency 'rouge'
   s.add_dependency 'apitome'
   s.add_dependency 'rspec_api_documentation'
