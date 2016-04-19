@@ -1,4 +1,4 @@
-module Nxtleveldocs
+module ApitomeSlate
   module ApplicationHelper
   end
 end

@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Nxtleveldocs::Engine => "/nxtleveldocs"
+  mount ApitomeSlate::Engine => "/apitome_slate"
 end

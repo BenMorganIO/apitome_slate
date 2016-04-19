@@ -1,3 +1,3 @@
 Apitome.setup do |config|
-  config.layout = 'nxtleveldocs/application'
+  config.layout = 'apitome_slate/application'
 end

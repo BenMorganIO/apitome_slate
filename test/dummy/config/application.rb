@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "nxtleveldocs"
+require 'apitome_slate'
 
 module Dummy
   class Application < Rails::Application

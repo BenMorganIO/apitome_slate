@@ -1,15 +1,15 @@
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'nxtleveldocs/version'
+require 'apitome_slate/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'nxtleveldocs'
-  s.version     = Nxtleveldocs::VERSION
+  s.name        = 'apitome_slate'
+  s.version     = ApitomeSlate::VERSION
   s.authors     = ['Daniel Johnson', 'Ben A. Morgan']
   s.email       = ['janiel.dohnson@gmail.com']
-  s.homepage    = 'https://github.com/nxtlevelyou/nxtleveldocs'
-  s.summary     = "A new ApiAutoDoc solution!"
-  s.description = 'Add this, it generates docs for yer API. What more do you want???'
+  s.homepage    = 'https://github.com/wildcardlabs/apitome_slate'
+  s.summary     = 'Apitome for Slate.'
+  s.description = 'Use this gem to get Apitome to style your docs like Slate does.'
   s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.md']
