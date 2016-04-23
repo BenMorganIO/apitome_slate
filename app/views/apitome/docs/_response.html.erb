@@ -1,8 +1,0 @@
-HTTP/1.1 <%= request['response_status'] %> <%= request['response_status_text'] %>
-<% request['response_headers'].each do |key, value| %>
-<%= key %>: <%= value %>
-<% end %>
-<% if request['response_body'] %>
-
-<%== request['response_body'] %>
-<% end %>
