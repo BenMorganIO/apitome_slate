@@ -2,27 +2,7 @@
 
 <% resources.each do |resource| %>
   <h1 id="<%= resource['name']&.parameterize %>"><%= resource['name'] %></h1>
-
-  <% response_fields = set_example(resource['examples'].first['link'].gsub('.json', ''))['response_fields'] %>
-  <% if response_fields.any? %>
-    <h2 id="<%= "The #{resource['name'].singularize} Object".parameterize %>">
-      The <%= resource['name'].singularize %> Object
-    </h2>
-
-    <table class='attributes-table'>
-      <% response_fields.each do |attribute| %>
-        <tr>
-          <td class='key'>
-            <span class='key-name'><%= attribute['name'] %></span><br />
-            <span class='type'><%= attribute['type'] %></span>
-          </td>
-          <td class='value'>
-            <%== rendered_markdown attribute['description'] %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+  <%= raw rendered_markdown(resource['explanation'].strip_heredoc) if resource['explanation'] %>
 
   <% resource['examples'].each do |example| %>
     <% link = example['link'].gsub('.json', '') %>
@@ -32,24 +12,37 @@
       <%= example['description'] %>
     </h2>
 
-    <% example['requests'].each do |request| %>
-      <pre class="highlight"><code><%= request_code(request) %></code></pre>
-      <pre class="highlight"><code><%= response_code(request) %></code></pre>
-    <% end %>
-
     <%= raw rendered_markdown(example['explanation'].strip_heredoc) if example['explanation'] %>
 
+    <h3> Request </h3>
+
+    <% example['requests'].each do |request| %>
+      <pre class="highlight"><code><%= request_code(request) %></code></pre>
+    <% end %>
+
+    <h4> Endpoint </h4>
+    <p><code><%= "#{example['http_method']} #{example['route']}" %></code></p>
+
     <% if example['parameters'].any? %>
-      <h3> Arguments </h3>
+      <h4> Parameters </h4>
       <table class='attributes-table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
         <% example['parameters'].each do |parameter| %>
           <tr>
             <td class='key'>
-              <span class='key-name'><%= parameter['name'] %></span><br />
-              <% if parameter['required'] %>
-                <b class='required'> required </b>
+              <% if parameter['scope'] %>
+                <%= parameter['scope'] %>[<%= parameter['name'] %>]
               <% else %>
-                optional
+                <%= parameter['name'] %>
+              <% end %>
+              <% if parameter['required'] %>
+                <em>required</em>
               <% end %>
             </td>
             <td class='value'>
@@ -57,6 +50,38 @@
             </td>
           </tr>
         <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+    <% if example['response_fields'].present? %>
+      <h3> Response </h3>
+
+      <% example['requests'].each do |request| %>
+        <pre class="highlight"><code><%= response_code(request) %></code></pre>
+      <% end %>
+
+      <h4> Fields </h4>
+      <table class='attributes-table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% example['response_fields'].each do |attribute| %>
+          <tr>
+            <td class='key'>
+              <span class='key-name'><%= attribute['name'] %></span><br />
+              <span class='type'><%= attribute['type'] %></span>
+            </td>
+            <td class='value'>
+              <%= attribute['description'] %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
       </table>
     <% end %>
   <% end %>

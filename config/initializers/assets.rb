@@ -4,4 +4,5 @@ Rails.application.config.assets.precompile += %w(
   apitome_slate/navbar.png
   apitome_slate/screen.css
   apitome_slate/print.css
+  apitome_slate/application.nosearch.js
 )

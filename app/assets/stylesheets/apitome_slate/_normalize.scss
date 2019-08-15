@@ -111,7 +111,7 @@ abbr[title] {
 }
 
 /**
- * Address style set to `bolder` in Firefox , Safari, and Chrome.
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
 
 b,
@@ -129,7 +129,7 @@ dfn {
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox , Safari, and Chrome.
+ * contexts in Firefox 4+, Safari, and Chrome.
  */
 
 h1 {
@@ -246,7 +246,7 @@ samp {
  * 1. Correct color not being inherited.
  *    Known issue: affects color of disabled elements.
  * 2. Correct font properties not being inherited.
- * 3. Address margins set differently in Firefox , Safari, and Chrome.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 
 button,
@@ -305,7 +305,7 @@ html input[disabled] {
 }
 
 /**
- * Remove inner padding and border in Firefox .
+ * Remove inner padding and border in Firefox 4+.
  */
 
 button::-moz-focus-inner,
@@ -315,7 +315,7 @@ input::-moz-focus-inner {
 }
 
 /**
- * Address Firefox  setting `line-height` on `input` using `!important` in
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
 
